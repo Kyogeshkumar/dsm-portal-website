@@ -1,14 +1,8 @@
-<<<<<<< SEARCH
-interface Site {
-  site_id: string;
-  site_name: string;
-}
-=======
-interface Site {
-  site_id: string;
-  site_name: string;
-  capacity_mw?: number;
-  region?: string;
-  state?: string;
-}
->>>>>>> REPLACE
+const sql = neon(url);
+const rows = await sql<SiteRow>`
+  SELECT site_id, site_name
+  FROM sites
+  ORDER BY site_name;
+`;
+
+return NextResponse.json({ sites: rows });
